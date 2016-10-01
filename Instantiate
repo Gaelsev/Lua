@@ -1,0 +1,20 @@
+ennemy = {}
+
+function ennemy:touch(event)
+  if (event.phase == "ended") then
+    print(ennemy[#ennemy])
+    event.target:removeSelf()
+  end
+end
+
+local nbr
+for nbr = 1, 10 do
+  nbr = display.newCircle( math.random(750/2), math.random(1334/2), 20 )
+  ennemy[#ennemy+1] = nbr
+end
+
+local i
+for i = 1, #ennemy do
+    ennemy[i]:addEventListener("touch", ennemy)
+    text = display.newText(":)", ennemy[i].x, ennemy[i].y, native.systemFont, 18)
+end
